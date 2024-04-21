@@ -4,6 +4,7 @@ global using System.Linq;
 global using System.Windows.Forms;
 using MVPPattern.Presenters;
 using MVPPattern.Views.Windows;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace MVPPattern;
 
@@ -15,6 +16,8 @@ static class Program
     [STAThread]
     static void Main()
     {
+        var serviceCollection = new ServiceCollection();
+        
         Application.EnableVisualStyles();
         Application.SetCompatibleTextRenderingDefault(false);
 
