@@ -8,17 +8,20 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Win32;
 using XanPadPlusPlus.Models;
+using XanPadPlusPlus.Services.Interfaces;
 using XanPadPlusPlus.Views.Interfaces;
 
 namespace XanPadPlusPlus.Views.Windows;
 
 public partial class MainView : Form, IMainView
 {
+    private readonly ISystem _system;
+
     private const string CaretPositionFormat = "Ln {0}, Col {1}";
     private const string LinesCountFormat = "Lines count: {0}";
     private const string CapsLockStateFormat = "Caps Lock: {0}";
     private const string SelectedLanguageFormat = "Lang: {0}";
-    
+
     public event Action? CapsLockIndicatorModified;
     public event Action? SelectedLanguageIndicatorModified;
     public event Action? CaretPositionIndicatorModified;
@@ -26,25 +29,29 @@ public partial class MainView : Form, IMainView
     public event Action? NewPadRequested;
     public event Action? OpenDocumentRequested;
     public event Action<string>? OpenedDocumentReceived;
+    public event Action? SaveAsRequested;
+    public event Action<string>? SaveAsReceived;
+    public event Action? SaveRequested;
+    public event Action? GoToLineRequested;
 
-    public MainView()
+    public MainView(ISystem system)
     {
+        _system = system;
         InitializeComponent();
 
         textBox.SelectionChanged += (_, _) => { CaretPositionIndicatorModified?.Invoke(); };
-        
     }
 
     public void CapsLockIndicatorModify()
     {
         capsLockToolStripStatusLabel.Text = string.Format(CapsLockStateFormat,
-            Services.Windows.System.GetCapsLockStatus() ? "On" : "Off");
+            _system.GetCapsLockStatus() ? "On" : "Off");
     }
 
     public void SelectedLanguageIndicatorModify()
     {
         selectedLangToolStripStatusLabel.Text =
-            string.Format(SelectedLanguageFormat, Services.Windows.System.GetSelectedLanguage());
+            string.Format(SelectedLanguageFormat, _system.GetSelectedLanguage());
     }
 
     public void CaretPositionIndicatorModify()
@@ -72,9 +79,37 @@ public partial class MainView : Form, IMainView
         OpenedDocumentReceived?.Invoke(openFileDialog.FileName);
     }
 
+    public void SaveAsDocument()
+    {
+        using var saveFileDialog = new SaveFileDialog();
+        saveFileDialog.Filter = @"xpad files (*.xpad)|*.xpad|txt files (*.txt)|*.txt|All files (*.*)|*.*";
+        saveFileDialog.OverwritePrompt = true;
+        saveFileDialog.ShowDialog();
+        SaveAsReceived?.Invoke(saveFileDialog.FileName);
+    }
+
+    public string TextContent => textBox.Text;
+
     public void ImportDataFromDocumentData(string documentData)
     {
         textBox.Text = documentData;
+    }
+
+    public void ShowGoToLineView()
+    {
+        var goToLineView = new GoToLineView();
+        goToLineView.SubmitClicked += GoToLineViewOnSubmitClicked;
+        goToLineView.ShowDialog();
+    }
+
+    private void GoToLineViewOnSubmitClicked(int line)
+    {
+        if (line < 1 || line > textBox.Text.Split('\n').Length)
+        {
+            return;
+        }
+
+        textBox.SelectionStart = textBox.GetFirstCharIndexFromLine(line - 1);
     }
 
     public CaretPosition GetCaretPosition()
@@ -145,5 +180,68 @@ public partial class MainView : Form, IMainView
     private void openToolStripMenuItem_Click(object sender, EventArgs e)
     {
         OpenDocumentRequested?.Invoke();
+    }
+
+    private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        SaveRequested?.Invoke();
+    }
+
+    private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        SaveAsRequested?.Invoke();
+    }
+
+    private void cutToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        textBox.Cut();
+    }
+
+    private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        textBox.Copy();
+    }
+
+    private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        textBox.Paste();
+    }
+
+    private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        textBox.Text = textBox.Text.Remove(textBox.SelectionStart, textBox.SelectionLength);
+    }
+
+    private void goToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        GoToLineRequested?.Invoke();
+    }
+
+    private void selectAllToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        textBox.SelectAll();
+    }
+
+    private void timeDateToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        textBox.Text = textBox.Text.Remove(textBox.SelectionStart, textBox.SelectionLength)
+            .Insert(textBox.SelectionStart, _system.GetTimeDate());
+    }
+
+    private void fontToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        var fontDialog = new FontDialog();
+        fontDialog.ShowDialog();
+        fontDialog.Apply += (_, _) =>
+        {
+            if (textBox.SelectionStart != 0)
+            {
+                textBox.SelectionFont = fontDialog.Font;
+            }
+            else
+            {
+                textBox.Font = fontDialog.Font;
+            }
+        };
     }
 }

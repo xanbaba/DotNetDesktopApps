@@ -19,7 +19,7 @@ static class Program
         Application.EnableVisualStyles();
         Application.SetCompatibleTextRenderingDefault(false);
 
-        var mainView = new MainView();
+        var mainView = new MainView(new Services.Windows.System());
         _ = new MainPresenter(mainView);
 
         Application.Run(mainView);

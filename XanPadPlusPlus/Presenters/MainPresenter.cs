@@ -23,6 +23,48 @@ public class MainPresenter
         _view.NewPadRequested += ViewOnNewPadRequested;
         _view.OpenDocumentRequested += ViewOnOpenDocumentRequested;
         _view.OpenedDocumentReceived += ViewOnOpenedDocumentReceived;
+        _view.SaveAsRequested += ViewOnSaveAsRequested;
+        _view.SaveAsReceived += ViewOnSaveAsReceived;
+        _view.SaveRequested += ViewOnSaveRequested;
+        _view.GoToLineRequested += ViewOnGoToLineRequested;
+    }
+
+    private void ViewOnGoToLineRequested()
+    {
+        _view.ShowGoToLineView();
+    }
+
+    private void ViewOnSaveAsReceived(string fileName)
+    {
+        var streamWriter = new StreamWriter(fileName);
+        if (Path.GetExtension(fileName) == ".xpad")
+        {
+            throw new NotImplementedException();
+        }
+        else
+        {
+            streamWriter.Write(_view.TextContent);
+        }
+        
+        streamWriter.Close();
+        ViewOnOpenedDocumentReceived(fileName);
+    }
+
+    private void ViewOnSaveRequested()
+    {
+        if (_document == null)
+        {
+            ViewOnSaveAsRequested();
+            return;
+        }
+        var streamWriter = new StreamWriter(_document.FileName);
+        streamWriter.Write(_view.TextContent);
+        streamWriter.Close();
+    }
+
+    private void ViewOnSaveAsRequested()
+    {
+        _view.SaveAsDocument();
     }
 
     private void ViewOnOpenedDocumentReceived(string fileName)
