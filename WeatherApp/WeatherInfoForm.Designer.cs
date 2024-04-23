@@ -32,6 +32,7 @@ partial class WeatherInfoForm
     private void InitializeComponent()
     {
         this.buttonsPanel = new System.Windows.Forms.Panel();
+        this.exportButton = new System.Windows.Forms.Button();
         this.closeButton = new System.Windows.Forms.Button();
         this.weatherInfoPanel = new System.Windows.Forms.Panel();
         this.label12 = new System.Windows.Forms.Label();
@@ -61,6 +62,7 @@ partial class WeatherInfoForm
         // 
         // buttonsPanel
         // 
+        this.buttonsPanel.Controls.Add(this.exportButton);
         this.buttonsPanel.Controls.Add(this.closeButton);
         this.buttonsPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
         this.buttonsPanel.Location = new System.Drawing.Point(0, 596);
@@ -68,13 +70,25 @@ partial class WeatherInfoForm
         this.buttonsPanel.Size = new System.Drawing.Size(572, 84);
         this.buttonsPanel.TabIndex = 0;
         // 
+        // exportButton
+        // 
+        this.exportButton.Dock = System.Windows.Forms.DockStyle.Left;
+        this.exportButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+        this.exportButton.Location = new System.Drawing.Point(294, 0);
+        this.exportButton.Name = "exportButton";
+        this.exportButton.Size = new System.Drawing.Size(278, 84);
+        this.exportButton.TabIndex = 1;
+        this.exportButton.Text = "EXPORT";
+        this.exportButton.UseVisualStyleBackColor = true;
+        this.exportButton.Click += new System.EventHandler(this.exportButton_Click);
+        // 
         // closeButton
         // 
-        this.closeButton.Dock = System.Windows.Forms.DockStyle.Fill;
+        this.closeButton.Dock = System.Windows.Forms.DockStyle.Left;
         this.closeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
         this.closeButton.Location = new System.Drawing.Point(0, 0);
         this.closeButton.Name = "closeButton";
-        this.closeButton.Size = new System.Drawing.Size(572, 84);
+        this.closeButton.Size = new System.Drawing.Size(294, 84);
         this.closeButton.TabIndex = 0;
         this.closeButton.Text = "CLOSE";
         this.closeButton.UseVisualStyleBackColor = true;
@@ -319,6 +333,8 @@ partial class WeatherInfoForm
         this.weatherInfoPanel.ResumeLayout(false);
         this.ResumeLayout(false);
     }
+
+    private System.Windows.Forms.Button exportButton;
 
     private System.Windows.Forms.Label label12;
 

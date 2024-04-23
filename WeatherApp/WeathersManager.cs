@@ -46,8 +46,24 @@ public class WeathersManager
         }
     }
 
+    public void ImportWeatherLocation(WeatherLocation weatherLocation)
+    {
+        _weatherLocations.Add(weatherLocation);
+        SaveToFile();
+    }
+
     private void AddCity(string cityName)
     {
+        if (!_weatherLocations.All(location =>
+            {
+                if (location.CityName != null)
+                {
+                    return location.CityName != cityName;
+                }
+
+                return true;
+            })) return;
+        
         _weatherLocations.Add(new WeatherLocation
         {
             CityName = cityName,
@@ -91,11 +107,13 @@ public class WeathersManager
                 {
                     locationsIndexesClone[j] -= 1;
                 }
+
                 Console.WriteLine(locationsIndexesClone[j]);
             }
 
             --i;
         }
+
         SaveToFile();
     }
 
@@ -117,6 +135,7 @@ public class WeathersManager
                 weatherLocation.Weather = WeatherApiManager.GetWeatherByCityName(weatherLocation.CityName);
             }
         }
+
         _weatherLocations.ResetBindings();
         SaveToFile();
     }

@@ -30,6 +30,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.importButton = new System.Windows.Forms.Button();
             this.moreButton = new System.Windows.Forms.Button();
             this.refreshButton = new System.Windows.Forms.Button();
             this.removeButton = new System.Windows.Forms.Button();
@@ -43,6 +44,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.importButton);
             this.panel1.Controls.Add(this.moreButton);
             this.panel1.Controls.Add(this.refreshButton);
             this.panel1.Controls.Add(this.removeButton);
@@ -51,17 +53,30 @@
             this.panel1.Location = new System.Drawing.Point(0, 557);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(584, 135);
+            this.panel1.Size = new System.Drawing.Size(624, 135);
             this.panel1.TabIndex = 0;
+            // 
+            // importButton
+            // 
+            this.importButton.Dock = System.Windows.Forms.DockStyle.Left;
+            this.importButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.importButton.Location = new System.Drawing.Point(501, 0);
+            this.importButton.Margin = new System.Windows.Forms.Padding(4);
+            this.importButton.Name = "importButton";
+            this.importButton.Size = new System.Drawing.Size(121, 135);
+            this.importButton.TabIndex = 4;
+            this.importButton.Text = "IMPORT";
+            this.importButton.UseVisualStyleBackColor = true;
+            this.importButton.Click += new System.EventHandler(this.importButton_Click);
             // 
             // moreButton
             // 
             this.moreButton.Dock = System.Windows.Forms.DockStyle.Left;
             this.moreButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.moreButton.Location = new System.Drawing.Point(434, 0);
+            this.moreButton.Location = new System.Drawing.Point(383, 0);
             this.moreButton.Margin = new System.Windows.Forms.Padding(4);
             this.moreButton.Name = "moreButton";
-            this.moreButton.Size = new System.Drawing.Size(150, 135);
+            this.moreButton.Size = new System.Drawing.Size(118, 135);
             this.moreButton.TabIndex = 3;
             this.moreButton.Text = "MORE";
             this.moreButton.UseVisualStyleBackColor = true;
@@ -71,10 +86,10 @@
             // 
             this.refreshButton.Dock = System.Windows.Forms.DockStyle.Left;
             this.refreshButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.refreshButton.Location = new System.Drawing.Point(292, 0);
+            this.refreshButton.Location = new System.Drawing.Point(248, 0);
             this.refreshButton.Margin = new System.Windows.Forms.Padding(4);
             this.refreshButton.Name = "refreshButton";
-            this.refreshButton.Size = new System.Drawing.Size(142, 135);
+            this.refreshButton.Size = new System.Drawing.Size(135, 135);
             this.refreshButton.TabIndex = 2;
             this.refreshButton.Text = "REFRESH";
             this.refreshButton.UseVisualStyleBackColor = true;
@@ -84,10 +99,10 @@
             // 
             this.removeButton.Dock = System.Windows.Forms.DockStyle.Left;
             this.removeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.removeButton.Location = new System.Drawing.Point(140, 0);
+            this.removeButton.Location = new System.Drawing.Point(115, 0);
             this.removeButton.Margin = new System.Windows.Forms.Padding(4);
             this.removeButton.Name = "removeButton";
-            this.removeButton.Size = new System.Drawing.Size(152, 135);
+            this.removeButton.Size = new System.Drawing.Size(133, 135);
             this.removeButton.TabIndex = 1;
             this.removeButton.Text = "REMOVE";
             this.removeButton.UseVisualStyleBackColor = true;
@@ -100,7 +115,7 @@
             this.addButton.Location = new System.Drawing.Point(0, 0);
             this.addButton.Margin = new System.Windows.Forms.Padding(0);
             this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(140, 135);
+            this.addButton.Size = new System.Drawing.Size(115, 135);
             this.addButton.TabIndex = 0;
             this.addButton.Text = "ADD";
             this.addButton.UseVisualStyleBackColor = true;
@@ -113,7 +128,7 @@
             this.panel2.Location = new System.Drawing.Point(0, 60);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(584, 497);
+            this.panel2.Size = new System.Drawing.Size(624, 497);
             this.panel2.TabIndex = 1;
             // 
             // weatherLocationsCheckListBox
@@ -124,7 +139,7 @@
             this.weatherLocationsCheckListBox.Location = new System.Drawing.Point(0, 0);
             this.weatherLocationsCheckListBox.Margin = new System.Windows.Forms.Padding(4);
             this.weatherLocationsCheckListBox.Name = "weatherLocationsCheckListBox";
-            this.weatherLocationsCheckListBox.Size = new System.Drawing.Size(584, 497);
+            this.weatherLocationsCheckListBox.Size = new System.Drawing.Size(624, 497);
             this.weatherLocationsCheckListBox.TabIndex = 0;
             // 
             // label1
@@ -141,7 +156,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 692);
+            this.ClientSize = new System.Drawing.Size(624, 692);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -154,6 +169,8 @@
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
         }
+
+        private System.Windows.Forms.Button importButton;
 
         private System.Windows.Forms.Button moreButton;
 
