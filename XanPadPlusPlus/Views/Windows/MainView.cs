@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
@@ -89,6 +90,15 @@ public partial class MainView : Form, IMainView
     }
 
     public string TextContent => textBox.Text;
+    public void SaveStyledContentToFile(string filePath)
+    {
+        textBox.SaveFile(filePath, RichTextBoxStreamType.RichText);
+    }
+
+    public void LoadStyledContentFromFile(string filePath)
+    {
+        textBox.LoadFile(filePath, RichTextBoxStreamType.RichText);
+    }
 
     public void ImportDataFromDocumentData(string documentData)
     {
@@ -232,16 +242,28 @@ public partial class MainView : Form, IMainView
     {
         var fontDialog = new FontDialog();
         fontDialog.ShowDialog();
-        fontDialog.Apply += (_, _) =>
+
+        if (textBox.SelectionLength != 0)
         {
-            if (textBox.SelectionStart != 0)
-            {
-                textBox.SelectionFont = fontDialog.Font;
-            }
-            else
-            {
-                textBox.Font = fontDialog.Font;
-            }
-        };
+            textBox.SelectionFont = fontDialog.Font;
+        }
+        else
+        {
+            textBox.Font = fontDialog.Font;
+        }
+    }
+
+    private void colorToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        var colorDialog = new ColorDialog();
+        colorDialog.ShowDialog();
+        if (textBox.SelectionLength != 0)
+        {
+            textBox.SelectionColor = colorDialog.Color;
+        }
+        else
+        {
+            textBox.ForeColor = colorDialog.Color;
+        }
     }
 }

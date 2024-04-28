@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Runtime.Remoting.Messaging;
+using System.Runtime.Serialization.Formatters.Binary;
 using XanPadPlusPlus.Models;
 using XanPadPlusPlus.Views.Interfaces;
 
@@ -36,18 +39,23 @@ public class MainPresenter
 
     private void ViewOnSaveAsReceived(string fileName)
     {
-        var streamWriter = new StreamWriter(fileName);
+        if (string.IsNullOrWhiteSpace(fileName))
+        {
+            return;
+        }
         if (Path.GetExtension(fileName) == ".xpad")
         {
-            throw new NotImplementedException();
+            _view.SaveStyledContentToFile(fileName);
+            ViewOnOpenedDocumentReceived(fileName);
         }
         else
         {
+            var fileWriter = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write);
+            var streamWriter = new StreamWriter(fileWriter);
             streamWriter.Write(_view.TextContent);
+            fileWriter.Close();
+            ViewOnOpenedDocumentReceived(fileName);
         }
-        
-        streamWriter.Close();
-        ViewOnOpenedDocumentReceived(fileName);
     }
 
     private void ViewOnSaveRequested()
@@ -55,6 +63,12 @@ public class MainPresenter
         if (_document == null)
         {
             ViewOnSaveAsRequested();
+            return;
+        }
+
+        if (Path.GetExtension(_document.FileName) == ".xpad")
+        {
+            _view.SaveStyledContentToFile(_document.FileName);
             return;
         }
         var streamWriter = new StreamWriter(_document.FileName);
@@ -86,7 +100,8 @@ public class MainPresenter
                 _view.ImportDataFromDocumentData(File.ReadAllText(fileName));
                 break;
             case ".xpad":
-                throw new NotImplementedException();
+                _view.LoadStyledContentFromFile(fileName);
+                break;
         }
     }
 

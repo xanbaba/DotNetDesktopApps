@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Windows.Forms;
 using XanPadPlusPlus.Models;
 
 namespace XanPadPlusPlus.Views.Interfaces;
@@ -40,6 +43,8 @@ public interface IMainView
     
     // Text box content
     public string TextContent { get; }
+    public void SaveStyledContentToFile(string filePath);
+    public void LoadStyledContentFromFile(string filePath);
 
     CaretPosition GetCaretPosition();
 }
