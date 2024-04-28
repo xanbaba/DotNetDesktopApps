@@ -160,7 +160,7 @@
                     <ColumnDefinition />
                     <ColumnDefinition Width="2*" />
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="13" Style="{StaticResource KeyBoardButton}">Backspace</Button>
+                
                 <Button Grid.Column="0" Style="{StaticResource PinkKeyBoardButton}">`</Button>
                 <Button Grid.Column="1" Style="{StaticResource PinkKeyBoardButton}">1</Button>
                 <Button Grid.Column="2" Style="{StaticResource PinkKeyBoardButton}">2</Button>
@@ -174,6 +174,40 @@
                 <Button Grid.Column="10" Style="{StaticResource YellowKeyBoardButton}">0</Button>
                 <Button Grid.Column="11" Style="{StaticResource GreenKeyBoardButton}">-</Button>
                 <Button Grid.Column="12" Style="{StaticResource GreenKeyBoardButton}">=</Button>
+                <Button Grid.Column="13" Style="{StaticResource KeyBoardButton}">Backspace</Button>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.5*" />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="1.5*" />
+                </Grid.ColumnDefinitions>
+                
+                <Button Grid.Column="0" Style="{StaticResource KeyBoardButton}">Tab</Button>
+                <Button Grid.Column="1" Style="{StaticResource PinkKeyBoardButton}">q</Button>
+                <Button Grid.Column="2" Style="{StaticResource YellowKeyBoardButton}">w</Button>
+                <Button Grid.Column="3" Style="{StaticResource GreenKeyBoardButton}">e</Button>
+                <Button Grid.Column="4" Style="{StaticResource BlueKeyBoardButton}">r</Button>
+                <Button Grid.Column="5" Style="{StaticResource BlueKeyBoardButton}">t</Button>
+                <Button Grid.Column="6" Style="{StaticResource PurpleKeyBoardButton}">y</Button>
+                <Button Grid.Column="7" Style="{StaticResource PurpleKeyBoardButton}">u</Button>
+                <Button Grid.Column="8" Style="{StaticResource PinkKeyBoardButton}">i</Button>
+                <Button Grid.Column="9" Style="{StaticResource YellowKeyBoardButton}">o</Button>
+                <Button Grid.Column="10" Style="{StaticResource GreenKeyBoardButton}">p</Button>
+                <Button Grid.Column="11" Style="{StaticResource GreenKeyBoardButton}">[</Button>
+                <Button Grid.Column="12" Style="{StaticResource GreenKeyBoardButton}">]</Button>
+                <Button Grid.Column="13" Style="{StaticResource GreenKeyBoardButton}">\</Button>
             </Grid>
         </Grid>
     </Grid>
