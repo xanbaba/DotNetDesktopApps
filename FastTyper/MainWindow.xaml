@@ -4,8 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FastTyper"
+        xmlns:s="clr-namespace:System.Windows.Input;assembly=System"
         mc:Ignorable="d"
-        Title="MainWindow" Height="438" Width="939">
+        Title="MainWindow" Height="438" Width="939"
+        KeyDown="MainWindow_OnKeyDown" 
+        d:DataContext="{d:DesignInstance Type=local:MainWindow, IsDesignTimeCreatable=True }">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -31,13 +34,13 @@
 
             <StackPanel Margin="0 10 0 0" Orientation="Horizontal" Style="{StaticResource FontSize}">
                 <TextBlock Margin=" 0 0 6 0">Speed:</TextBlock>
-                <TextBlock FontWeight="Bold" Margin=" 0 0 6 0">0</TextBlock>
-                <TextBlock>chars/sec</TextBlock>
+                <TextBlock x:Name="TypingSpeed" FontWeight="Bold" Margin=" 0 0 6 0">0</TextBlock>
+                <TextBlock>chars/min</TextBlock>
             </StackPanel>
             <StackPanel Margin="0 10 0 0" Style="{StaticResource FontSize}" Grid.Row="0" Grid.Column="1"
                         Orientation="Horizontal">
                 <TextBlock Margin=" 0 0 6 0">Fails:</TextBlock>
-                <TextBlock FontWeight="Bold" Margin=" 0 0 6 0">0</TextBlock>
+                <TextBlock FontWeight="Bold" Margin=" 0 0 6 0" Text="{Binding Path=Fails, Mode=TwoWay, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}"></TextBlock>
             </StackPanel>
             <Grid Margin="0 10 0 0" Style="{StaticResource FontSize}" Grid.Row="0" Grid.Column="2">
                 <Grid.ColumnDefinitions>
@@ -46,21 +49,29 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0" Orientation="Horizontal">
                     <TextBlock Margin=" 0 0 6 0">Difficulty:</TextBlock>
-                    <TextBlock FontWeight="Bold" Margin=" 0 0 6 0">0</TextBlock>
+                    <TextBlock x:Name="Difficulty" FontWeight="Bold" Margin=" 0 0 6 0">0</TextBlock>
                 </StackPanel>
 
-                <Slider Grid.Column="1" Minimum="0" Maximum="3" Interval="1" Value="0"></Slider>
+                <Slider Grid.Column="1" Minimum="0" Maximum="2" Ticks="0, 1, 2" Value="0" ValueChanged="RangeBase_OnValueChanged"></Slider>
 
             </Grid>
-            <CheckBox Margin="0 10 0 0" Grid.Row="0" Grid.Column="3" Style="{StaticResource FontSize}"
+            <CheckBox IsChecked="{Binding IsCaseSensitive, Mode=TwoWay, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}"  Margin="0 10 0 0" Grid.Row="0" Grid.Column="3" Style="{StaticResource FontSize}"
                       Content="Case Sensitive" />
-            <Button Grid.Row="1" Grid.Column="2" Margin="4">Start</Button>
-            <Button Grid.Row="1" Grid.Column="3" Margin="4">Stop</Button>
+            <Button Click="StartClicked" Grid.Row="1" Grid.Column="2" Margin="4">Start</Button>
+            <Button Click="StopClicked" Grid.Row="1" Grid.Column="3" Margin="4">Stop</Button>
         </Grid>
         <Grid Grid.Row="1">
-            <TextBlock Background="#add8e6"></TextBlock>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock x:Name="WordsTextBox" Style="{StaticResource FontSize}" Background="#add8e6"></TextBlock>
+                <TextBox KeyDown="UserInputTextBox_OnKeyDown" TextChanged="UserInputTextBox_OnTextChanged" x:Name="UserInputTextBox" Grid.Row="1" Style="{StaticResource FontSize}" Background="#add8e6"></TextBox>
+            </Grid>
+            
         </Grid>
-        <Grid Grid.Row="2">
+        <Grid x:Name="KeyboardButtons" Grid.Row="2">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
@@ -111,7 +122,7 @@
                     <Setter Property="FontSize" Value="35"/>
                     <Style.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#7eff7e" />
+                            <Setter Property="Background" Value="#bfffbf" />
                         </Trigger>
                     </Style.Triggers>
                 </Style>
@@ -120,7 +131,7 @@
                     <Setter Property="FontSize" Value="35"/>
                     <Style.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#7ec1ff" />
+                            <Setter Property="Background" Value="#bfe0ff" />
                         </Trigger>
                     </Style.Triggers>
                 </Style>
@@ -135,7 +146,6 @@
                 </Style>
                 <Style x:Key="OrangeKeyBoardButton" TargetType="Button" BasedOn="{StaticResource KeyBoardButton}">
                     <Setter Property="Background" Value="#e5bb72" />
-                    <Setter Property="FontSize" Value="35"/>
                     <Style.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Background" Value="#ffd87e" />
@@ -161,19 +171,19 @@
                     <ColumnDefinition Width="2*" />
                 </Grid.ColumnDefinitions>
                 
-                <Button Grid.Column="0" Style="{StaticResource PinkKeyBoardButton}">`</Button>
-                <Button Grid.Column="1" Style="{StaticResource PinkKeyBoardButton}">1</Button>
-                <Button Grid.Column="2" Style="{StaticResource PinkKeyBoardButton}">2</Button>
-                <Button Grid.Column="3" Style="{StaticResource YellowKeyBoardButton}">3</Button>
-                <Button Grid.Column="4" Style="{StaticResource GreenKeyBoardButton}">4</Button>
-                <Button Grid.Column="5" Style="{StaticResource BlueKeyBoardButton}">5</Button>
-                <Button Grid.Column="6" Style="{StaticResource BlueKeyBoardButton}">6</Button>
-                <Button Grid.Column="7" Style="{StaticResource PurpleKeyBoardButton}">7</Button>
-                <Button Grid.Column="8" Style="{StaticResource PurpleKeyBoardButton}">8</Button>
-                <Button Grid.Column="9" Style="{StaticResource PinkKeyBoardButton}">9</Button>
-                <Button Grid.Column="10" Style="{StaticResource YellowKeyBoardButton}">0</Button>
-                <Button Grid.Column="11" Style="{StaticResource GreenKeyBoardButton}">-</Button>
-                <Button Grid.Column="12" Style="{StaticResource GreenKeyBoardButton}">=</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="0" Style="{StaticResource PinkKeyBoardButton}">`</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="1" Style="{StaticResource PinkKeyBoardButton}">1</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="2" Style="{StaticResource PinkKeyBoardButton}">2</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="3" Style="{StaticResource YellowKeyBoardButton}">3</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="4" Style="{StaticResource GreenKeyBoardButton}">4</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="5" Style="{StaticResource BlueKeyBoardButton}">5</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="6" Style="{StaticResource BlueKeyBoardButton}">6</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="7" Style="{StaticResource PurpleKeyBoardButton}">7</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="8" Style="{StaticResource PurpleKeyBoardButton}">8</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="9" Style="{StaticResource PinkKeyBoardButton}">9</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="10" Style="{StaticResource YellowKeyBoardButton}">0</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="11" Style="{StaticResource GreenKeyBoardButton}">-</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="12" Style="{StaticResource GreenKeyBoardButton}">=</Button>
                 <Button Grid.Column="13" Style="{StaticResource KeyBoardButton}">Backspace</Button>
             </Grid>
             <Grid Grid.Row="1">
@@ -195,19 +205,98 @@
                 </Grid.ColumnDefinitions>
                 
                 <Button Grid.Column="0" Style="{StaticResource KeyBoardButton}">Tab</Button>
-                <Button Grid.Column="1" Style="{StaticResource PinkKeyBoardButton}">q</Button>
-                <Button Grid.Column="2" Style="{StaticResource YellowKeyBoardButton}">w</Button>
-                <Button Grid.Column="3" Style="{StaticResource GreenKeyBoardButton}">e</Button>
-                <Button Grid.Column="4" Style="{StaticResource BlueKeyBoardButton}">r</Button>
-                <Button Grid.Column="5" Style="{StaticResource BlueKeyBoardButton}">t</Button>
-                <Button Grid.Column="6" Style="{StaticResource PurpleKeyBoardButton}">y</Button>
-                <Button Grid.Column="7" Style="{StaticResource PurpleKeyBoardButton}">u</Button>
-                <Button Grid.Column="8" Style="{StaticResource PinkKeyBoardButton}">i</Button>
-                <Button Grid.Column="9" Style="{StaticResource YellowKeyBoardButton}">o</Button>
-                <Button Grid.Column="10" Style="{StaticResource GreenKeyBoardButton}">p</Button>
-                <Button Grid.Column="11" Style="{StaticResource GreenKeyBoardButton}">[</Button>
-                <Button Grid.Column="12" Style="{StaticResource GreenKeyBoardButton}">]</Button>
-                <Button Grid.Column="13" Style="{StaticResource GreenKeyBoardButton}">\</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="1" Style="{StaticResource PinkKeyBoardButton}">q</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="2" Style="{StaticResource YellowKeyBoardButton}">w</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="3" Style="{StaticResource GreenKeyBoardButton}">e</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="4" Style="{StaticResource BlueKeyBoardButton}">r</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="5" Style="{StaticResource BlueKeyBoardButton}">t</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="6" Style="{StaticResource PurpleKeyBoardButton}">y</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="7" Style="{StaticResource PurpleKeyBoardButton}">u</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="8" Style="{StaticResource PinkKeyBoardButton}">i</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="9" Style="{StaticResource YellowKeyBoardButton}">o</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="10" Style="{StaticResource GreenKeyBoardButton}">p</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="11" Style="{StaticResource GreenKeyBoardButton}">[</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="12" Style="{StaticResource GreenKeyBoardButton}">]</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="13" Style="{StaticResource GreenKeyBoardButton}">\</Button>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+                
+                <Button Grid.Column="0" Style="{StaticResource KeyBoardButton}">Caps Lock</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="1" Style="{StaticResource PinkKeyBoardButton}">a</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="2" Style="{StaticResource YellowKeyBoardButton}">s</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="3" Style="{StaticResource GreenKeyBoardButton}">d</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="4" Style="{StaticResource BlueKeyBoardButton}">f</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="5" Style="{StaticResource BlueKeyBoardButton}">g</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="6" Style="{StaticResource PurpleKeyBoardButton}">h</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="7" Style="{StaticResource PurpleKeyBoardButton}">j</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="8" Style="{StaticResource PinkKeyBoardButton}">k</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="9" Style="{StaticResource YellowKeyBoardButton}">l</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="10" Style="{StaticResource GreenKeyBoardButton}">;</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="11" Style="{StaticResource GreenKeyBoardButton}">'</Button>
+                <Button Grid.Column="12" Style="{StaticResource KeyBoardButton}">Enter</Button>
+            </Grid>
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2.5*" />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="2.5*" />
+                </Grid.ColumnDefinitions>
+                
+                <Button Grid.Column="0" Style="{StaticResource KeyBoardButton}">Shift</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="1" Style="{StaticResource PinkKeyBoardButton}">z</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="2" Style="{StaticResource YellowKeyBoardButton}">x</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="3" Style="{StaticResource GreenKeyBoardButton}">c</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="4" Style="{StaticResource BlueKeyBoardButton}">v</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="5" Style="{StaticResource BlueKeyBoardButton}">b</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="6" Style="{StaticResource PurpleKeyBoardButton}">n</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="7" Style="{StaticResource PurpleKeyBoardButton}">m</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="8" Style="{StaticResource PinkKeyBoardButton}">,</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="9" Style="{StaticResource YellowKeyBoardButton}">.</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="10" Style="{StaticResource GreenKeyBoardButton}">/</Button>
+                <Button Grid.Column="11" Style="{StaticResource KeyBoardButton}">Shift</Button>
+            </Grid>
+            <Grid Grid.Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.5*" />
+                    <ColumnDefinition Width="1.5*" />
+                    <ColumnDefinition Width="1.5*" />
+                    <ColumnDefinition Width="6*" />
+                    <ColumnDefinition Width="1.5*" />
+                    <ColumnDefinition Width="1.5*" />
+                    <ColumnDefinition Width="1.5*" />
+                </Grid.ColumnDefinitions>
+                
+                <Button Grid.Column="0" Style="{StaticResource KeyBoardButton}">Ctrl</Button>
+                <Button Grid.Column="1" Style="{StaticResource KeyBoardButton}">Win</Button>
+                <Button Grid.Column="2" Style="{StaticResource KeyBoardButton}">Alt</Button>
+                <Button Click="KeyBoardButtonPressed" Grid.Column="3" Style="{StaticResource OrangeKeyBoardButton}">Space</Button>
+                <Button Grid.Column="4" Style="{StaticResource KeyBoardButton}">Alt</Button>
+                <Button Grid.Column="5" Style="{StaticResource KeyBoardButton}">Win</Button>
+                <Button Grid.Column="6" Style="{StaticResource KeyBoardButton}">Ctrl</Button>
             </Grid>
         </Grid>
     </Grid>

@@ -29,6 +29,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tasksListBox = new System.Windows.Forms.ListBox();
             this.removeButton = new System.Windows.Forms.Button();
             this.doneButton = new System.Windows.Forms.Button();
@@ -56,7 +57,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.isDoneLabel = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.createTaskGroupBox.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tasksListBox
@@ -64,17 +68,19 @@
             this.tasksListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tasksListBox.FormattingEnabled = true;
             this.tasksListBox.ItemHeight = 18;
-            this.tasksListBox.Location = new System.Drawing.Point(12, 12);
+            this.tasksListBox.Location = new System.Drawing.Point(16, 15);
+            this.tasksListBox.Margin = new System.Windows.Forms.Padding(4);
             this.tasksListBox.Name = "tasksListBox";
-            this.tasksListBox.Size = new System.Drawing.Size(275, 310);
+            this.tasksListBox.Size = new System.Drawing.Size(365, 364);
             this.tasksListBox.TabIndex = 0;
             this.tasksListBox.SelectedIndexChanged += new System.EventHandler(this.tasksListBox_SelectedIndexChanged);
             // 
             // removeButton
             // 
-            this.removeButton.Location = new System.Drawing.Point(12, 334);
+            this.removeButton.Location = new System.Drawing.Point(16, 411);
+            this.removeButton.Margin = new System.Windows.Forms.Padding(4);
             this.removeButton.Name = "removeButton";
-            this.removeButton.Size = new System.Drawing.Size(94, 39);
+            this.removeButton.Size = new System.Drawing.Size(125, 48);
             this.removeButton.TabIndex = 1;
             this.removeButton.Text = "Remove";
             this.removeButton.UseVisualStyleBackColor = true;
@@ -82,9 +88,10 @@
             // 
             // doneButton
             // 
-            this.doneButton.Location = new System.Drawing.Point(112, 334);
+            this.doneButton.Location = new System.Drawing.Point(149, 411);
+            this.doneButton.Margin = new System.Windows.Forms.Padding(4);
             this.doneButton.Name = "doneButton";
-            this.doneButton.Size = new System.Drawing.Size(94, 39);
+            this.doneButton.Size = new System.Drawing.Size(125, 48);
             this.doneButton.TabIndex = 2;
             this.doneButton.Text = "Done";
             this.doneButton.UseVisualStyleBackColor = true;
@@ -94,26 +101,29 @@
             // 
             this.descriptionLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.descriptionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.descriptionLabel.Location = new System.Drawing.Point(293, 150);
+            this.descriptionLabel.Location = new System.Drawing.Point(391, 185);
+            this.descriptionLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.descriptionLabel.Name = "descriptionLabel";
-            this.descriptionLabel.Size = new System.Drawing.Size(358, 172);
+            this.descriptionLabel.Size = new System.Drawing.Size(477, 211);
             this.descriptionLabel.TabIndex = 3;
             // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(293, 127);
+            this.label1.Location = new System.Drawing.Point(391, 156);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(114, 23);
+            this.label1.Size = new System.Drawing.Size(152, 28);
             this.label1.TabIndex = 4;
             this.label1.Text = "Description:";
             // 
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(293, 12);
+            this.label2.Location = new System.Drawing.Point(391, 15);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(114, 23);
+            this.label2.Size = new System.Drawing.Size(152, 28);
             this.label2.TabIndex = 5;
             this.label2.Text = "Title:";
             // 
@@ -121,17 +131,19 @@
             // 
             this.titleLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.titleLabel.Location = new System.Drawing.Point(293, 35);
+            this.titleLabel.Location = new System.Drawing.Point(391, 43);
+            this.titleLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(358, 61);
+            this.titleLabel.Size = new System.Drawing.Size(477, 75);
             this.titleLabel.TabIndex = 6;
             // 
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(293, 342);
+            this.label4.Location = new System.Drawing.Point(391, 421);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(114, 23);
+            this.label4.Size = new System.Drawing.Size(152, 28);
             this.label4.TabIndex = 7;
             this.label4.Text = "Is Urgent?:";
             // 
@@ -139,18 +151,20 @@
             // 
             this.isUrgentLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.isUrgentLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.isUrgentLabel.Location = new System.Drawing.Point(395, 334);
+            this.isUrgentLabel.Location = new System.Drawing.Point(527, 411);
+            this.isUrgentLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.isUrgentLabel.Name = "isUrgentLabel";
-            this.isUrgentLabel.Size = new System.Drawing.Size(47, 39);
+            this.isUrgentLabel.Size = new System.Drawing.Size(62, 48);
             this.isUrgentLabel.TabIndex = 8;
             this.isUrgentLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(457, 342);
+            this.label6.Location = new System.Drawing.Point(609, 421);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(76, 23);
+            this.label6.Size = new System.Drawing.Size(101, 28);
             this.label6.TabIndex = 9;
             this.label6.Text = "Priority:";
             // 
@@ -158,18 +172,20 @@
             // 
             this.priorityLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.priorityLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.priorityLabel.Location = new System.Drawing.Point(539, 334);
+            this.priorityLabel.Location = new System.Drawing.Point(719, 411);
+            this.priorityLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.priorityLabel.Name = "priorityLabel";
-            this.priorityLabel.Size = new System.Drawing.Size(112, 39);
+            this.priorityLabel.Size = new System.Drawing.Size(149, 48);
             this.priorityLabel.TabIndex = 10;
             this.priorityLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label8
             // 
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label8.Location = new System.Drawing.Point(293, 411);
+            this.label8.Location = new System.Drawing.Point(391, 506);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(114, 23);
+            this.label8.Size = new System.Drawing.Size(152, 28);
             this.label8.TabIndex = 11;
             this.label8.Text = "Expire Date:";
             // 
@@ -177,9 +193,10 @@
             // 
             this.expireDateLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.expireDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.expireDateLabel.Location = new System.Drawing.Point(413, 395);
+            this.expireDateLabel.Location = new System.Drawing.Point(551, 486);
+            this.expireDateLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.expireDateLabel.Name = "expireDateLabel";
-            this.expireDateLabel.Size = new System.Drawing.Size(238, 39);
+            this.expireDateLabel.Size = new System.Drawing.Size(317, 48);
             this.expireDateLabel.TabIndex = 12;
             this.expireDateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -197,9 +214,11 @@
             this.createTaskGroupBox.Controls.Add(this.titleTextBox);
             this.createTaskGroupBox.Controls.Add(this.label3);
             this.createTaskGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.createTaskGroupBox.Location = new System.Drawing.Point(673, 12);
+            this.createTaskGroupBox.Location = new System.Drawing.Point(897, 15);
+            this.createTaskGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.createTaskGroupBox.Name = "createTaskGroupBox";
-            this.createTaskGroupBox.Size = new System.Drawing.Size(457, 497);
+            this.createTaskGroupBox.Padding = new System.Windows.Forms.Padding(4);
+            this.createTaskGroupBox.Size = new System.Drawing.Size(609, 612);
             this.createTaskGroupBox.TabIndex = 13;
             this.createTaskGroupBox.TabStop = false;
             this.createTaskGroupBox.Text = "Create New Task";
@@ -207,18 +226,20 @@
             // infoLabel
             // 
             this.infoLabel.ForeColor = System.Drawing.Color.Firebrick;
-            this.infoLabel.Location = new System.Drawing.Point(138, 442);
+            this.infoLabel.Location = new System.Drawing.Point(184, 544);
+            this.infoLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.infoLabel.Name = "infoLabel";
-            this.infoLabel.Size = new System.Drawing.Size(303, 23);
+            this.infoLabel.Size = new System.Drawing.Size(404, 28);
             this.infoLabel.TabIndex = 20;
             this.infoLabel.Text = "Fill all the the required fields";
             this.infoLabel.Visible = false;
             // 
             // addTask
             // 
-            this.addTask.Location = new System.Drawing.Point(18, 435);
+            this.addTask.Location = new System.Drawing.Point(24, 535);
+            this.addTask.Margin = new System.Windows.Forms.Padding(4);
             this.addTask.Name = "addTask";
-            this.addTask.Size = new System.Drawing.Size(94, 39);
+            this.addTask.Size = new System.Drawing.Size(125, 48);
             this.addTask.TabIndex = 14;
             this.addTask.Text = "Add";
             this.addTask.UseVisualStyleBackColor = true;
@@ -226,26 +247,29 @@
             // 
             // expireDateTimePicker
             // 
-            this.expireDateTimePicker.Location = new System.Drawing.Point(138, 372);
+            this.expireDateTimePicker.Location = new System.Drawing.Point(184, 458);
+            this.expireDateTimePicker.Margin = new System.Windows.Forms.Padding(4);
             this.expireDateTimePicker.Name = "expireDateTimePicker";
-            this.expireDateTimePicker.Size = new System.Drawing.Size(221, 30);
+            this.expireDateTimePicker.Size = new System.Drawing.Size(293, 30);
             this.expireDateTimePicker.TabIndex = 19;
             // 
             // label9
             // 
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label9.Location = new System.Drawing.Point(18, 379);
+            this.label9.Location = new System.Drawing.Point(24, 466);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(114, 23);
+            this.label9.Size = new System.Drawing.Size(152, 28);
             this.label9.TabIndex = 14;
             this.label9.Text = "Expire Date:";
             // 
             // urgentlyCheckBox
             // 
             this.urgentlyCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.urgentlyCheckBox.Location = new System.Drawing.Point(281, 309);
+            this.urgentlyCheckBox.Location = new System.Drawing.Point(375, 380);
+            this.urgentlyCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.urgentlyCheckBox.Name = "urgentlyCheckBox";
-            this.urgentlyCheckBox.Size = new System.Drawing.Size(108, 24);
+            this.urgentlyCheckBox.Size = new System.Drawing.Size(144, 30);
             this.urgentlyCheckBox.TabIndex = 18;
             this.urgentlyCheckBox.Text = "Urgently";
             this.urgentlyCheckBox.UseVisualStyleBackColor = true;
@@ -253,9 +277,10 @@
             // label7
             // 
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label7.Location = new System.Drawing.Point(18, 310);
+            this.label7.Location = new System.Drawing.Point(24, 382);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(76, 23);
+            this.label7.Size = new System.Drawing.Size(101, 28);
             this.label7.TabIndex = 14;
             this.label7.Text = "Priority:";
             // 
@@ -263,41 +288,46 @@
             // 
             this.priorityComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.priorityComboBox.FormattingEnabled = true;
-            this.priorityComboBox.Location = new System.Drawing.Point(138, 303);
+            this.priorityComboBox.Location = new System.Drawing.Point(184, 373);
+            this.priorityComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.priorityComboBox.Name = "priorityComboBox";
-            this.priorityComboBox.Size = new System.Drawing.Size(106, 33);
+            this.priorityComboBox.Size = new System.Drawing.Size(140, 33);
             this.priorityComboBox.TabIndex = 17;
             // 
             // descriptionTextBox
             // 
-            this.descriptionTextBox.Location = new System.Drawing.Point(138, 88);
+            this.descriptionTextBox.Location = new System.Drawing.Point(184, 108);
+            this.descriptionTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
-            this.descriptionTextBox.Size = new System.Drawing.Size(313, 184);
+            this.descriptionTextBox.Size = new System.Drawing.Size(416, 226);
             this.descriptionTextBox.TabIndex = 16;
             // 
             // label5
             // 
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(18, 95);
+            this.label5.Location = new System.Drawing.Point(24, 117);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(114, 89);
+            this.label5.Size = new System.Drawing.Size(152, 110);
             this.label5.TabIndex = 14;
             this.label5.Text = "Description:\r\nCan be empty";
             // 
             // titleTextBox
             // 
-            this.titleTextBox.Location = new System.Drawing.Point(138, 30);
+            this.titleTextBox.Location = new System.Drawing.Point(184, 37);
+            this.titleTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.titleTextBox.Name = "titleTextBox";
-            this.titleTextBox.Size = new System.Drawing.Size(313, 30);
+            this.titleTextBox.Size = new System.Drawing.Size(416, 30);
             this.titleTextBox.TabIndex = 15;
             // 
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(18, 37);
+            this.label3.Location = new System.Drawing.Point(24, 46);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(52, 23);
+            this.label3.Size = new System.Drawing.Size(69, 28);
             this.label3.TabIndex = 14;
             this.label3.Text = "Title:";
             // 
@@ -305,26 +335,47 @@
             // 
             this.isDoneLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.isDoneLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.isDoneLabel.Location = new System.Drawing.Point(395, 455);
+            this.isDoneLabel.Location = new System.Drawing.Point(527, 560);
+            this.isDoneLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.isDoneLabel.Name = "isDoneLabel";
-            this.isDoneLabel.Size = new System.Drawing.Size(47, 39);
+            this.isDoneLabel.Size = new System.Drawing.Size(62, 48);
             this.isDoneLabel.TabIndex = 15;
             this.isDoneLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label11
             // 
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label11.Location = new System.Drawing.Point(293, 463);
+            this.label11.Location = new System.Drawing.Point(391, 570);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(96, 23);
+            this.label11.Size = new System.Drawing.Size(128, 28);
             this.label11.TabIndex = 14;
             this.label11.Text = "Is Done?:";
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.toolStripDropDownButton1 });
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(1521, 25);
+            this.toolStrip1.TabIndex = 16;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripDropDownButton1
+            // 
+            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
+            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(29, 22);
+            this.toolStripDropDownButton1.Text = "toolStripDropDownButton1";
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1141, 521);
+            this.ClientSize = new System.Drawing.Size(1521, 641);
+            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.isDoneLabel);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.createTaskGroupBox);
@@ -341,13 +392,21 @@
             this.Controls.Add(this.doneButton);
             this.Controls.Add(this.removeButton);
             this.Controls.Add(this.tasksListBox);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.createTaskGroupBox.ResumeLayout(false);
             this.createTaskGroupBox.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
         }
+
+        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
+
+        private System.Windows.Forms.ToolStrip toolStrip1;
 
         private System.Windows.Forms.Label isDoneLabel;
         private System.Windows.Forms.Label label11;

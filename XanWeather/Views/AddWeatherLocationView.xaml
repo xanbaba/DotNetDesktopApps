@@ -1,0 +1,84 @@
+﻿<UserControl x:Class="XanWeather.Views.AddWeatherLocationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="clr-namespace:XanWeather.ViewModels"
+             mc:Ignorable="d"
+             d:DesignHeight="587" d:DesignWidth="445"
+             FontSize="15"
+             d:DataContext="{d:DesignInstance Type=vm:AddWeatherLocationViewModel, IsDesignTimeCreatable=True}">
+    <UserControl.Resources>
+        <Style x:Key="BorderedControl" TargetType="Border">
+            <!--Background="White" BorderBrush="Black" BorderThickness="3" Margin="10"-->
+            <Setter Property="Background" Value="White" />
+            <Setter Property="BorderBrush" Value="Black" />
+            <Setter Property="BorderThickness" Value="3" />
+            <Setter Property="Margin" Value="10" />
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.8*" />
+            <RowDefinition />
+            <RowDefinition Height="0.4*" />
+        </Grid.RowDefinitions>
+        <Border Style="{StaticResource BorderedControl}" Padding="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <RadioButton FontSize="20" IsChecked="{Binding IsCityOptionEnabled}" GroupName="AddOption">By City Name</RadioButton>
+                <Border Grid.Row="1" Style="{StaticResource BorderedControl}">
+                    <TextBox
+                        GotFocus="CityNameTextBox_OnGotFocus"
+                        LostFocus="CityNameTextBox_OnLostFocus"
+                        IsEnabled="{Binding IsCityOptionEnabled, Mode=OneWay}"
+                        Text="{Binding CityNameTextBoxText, UpdateSourceTrigger=PropertyChanged}" />
+                </Border>
+            </Grid>
+        </Border>
+        <Border Grid.Row="1" Style="{StaticResource BorderedControl}" Padding="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="0.3*" />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <RadioButton FontSize="20" IsChecked="{Binding IsCoordOptionEnabled}" GroupName="AddOption">By coords</RadioButton>
+                <TextBlock Grid.Row="1" Text="{Binding  ErrorMessageBinding}" Foreground="Brown" />
+                <Border Grid.Row="2" Style="{StaticResource BorderedControl}">
+                    <TextBox IsEnabled="{Binding IsCoordOptionEnabled, Mode=OneWay}"
+                             Text="{Binding LatitudeTextBoxText, UpdateSourceTrigger=PropertyChanged}"
+                             GotFocus="LatitudeTextBox_OnGotFocus"
+                             LostFocus="LatitudeTextBox_OnLostFocus" />
+                </Border>
+                <Border Grid.Row="3" Style="{StaticResource BorderedControl}">
+                    <TextBox IsEnabled="{Binding IsCoordOptionEnabled, Mode=OneWay}"
+                             Text="{Binding LongitudeTextBoxText, UpdateSourceTrigger=PropertyChanged}"
+                             GotFocus="LongitudeTextBox_OnGotFocus"
+                             LostFocus="Longitude_OnLostFocus" />
+                </Border>
+            </Grid>
+        </Border>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="White" />
+                    <Setter Property="BorderBrush" Value="Black" />
+                    <Setter Property="BorderThickness" Value="3" />
+                    <Setter Property="FontSize" Value="20" />
+                </Style>
+            </Grid.Resources>
+            <Button Command="{Binding AddCommand}" Margin="10 20 10 20">Add</Button>
+            <Button Grid.Column="1" Command="{Binding BackCommand}" Margin="10 20 10 20">Back</Button>
+        </Grid>
+    </Grid>
+</UserControl>

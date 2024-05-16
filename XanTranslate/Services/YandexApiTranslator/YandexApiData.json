@@ -1,0 +1,6 @@
+﻿{
+  "ApiKey": "trnsl.1.1.20240501T153856Z.d2e92120b6e85e07.4429dd1ec2bfb049ab2d3d84c19744f4d11c13bf",
+  "LanguageListRequestFormat": "https://translate.yandex.net/api/v1.5/tr.json/getLangs?key={0}&ui=en",
+  "TranslateRequestFormat": "https://translate.yandex.net/api/v1.5/tr.json/translate?key={0}&text={1}&lang={2}-{3}",
+  "AutoTranslateRequestFormat": "https://translate.yandex.net/api/v1.5/tr.json/translate?key={0}&text={1}&lang={2}"
+}

@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="XanWeather.Views.WeatherInformationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="clr-namespace:XanWeather.ViewModels"
+             mc:Ignorable="d"
+             d:DesignHeight="587" d:DesignWidth="445" d:DataContext="{d:DesignInstance Type=vm:WeatherInformationViewModel, IsDesignTimeCreatable=True}">
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="FontSize" Value="30"></Setter>
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="FontSize" Value="30"></Setter>
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <TextBlock>
+                <Run Text="City: " />
+                <Run Text="{Binding CityName}" />
+            </TextBlock>
+            <TextBlock>
+                <Run Text="Latitude: " />
+                <Run Text="{Binding Latitude}" />
+            </TextBlock>
+            <TextBlock>
+                <Run Text="Longitude: " />
+                <Run Text="{Binding Longitude}" />
+            </TextBlock>
+            <TextBlock>
+                <Run Text="Temperature: " />
+                <Run Text="{Binding Temperature}" />
+                <Run Text="C" />
+            </TextBlock>
+            <TextBlock>
+                <Run Text="Temperature Feels Like: " />
+                <Run Text="{Binding TemperatureFeelsLike}" />
+                <Run Text="C" />
+            </TextBlock>
+            <TextBlock>
+                <Run Text="Pressure: " />
+                <Run Text="{Binding Pressure}" />
+                <Run Text="hPa" />
+            </TextBlock>
+            <TextBlock>
+                <Run Text="Humidity: " />
+                <Run Text="{Binding Humidity}" />
+                <Run Text="%" />
+            </TextBlock>
+            <TextBlock>
+                <Run Text="WindSpeed: " />
+                <Run Text="{Binding WindSpeed}" />
+                <Run Text="meter/sec" />
+            </TextBlock>
+            <TextBlock>
+                <Run Text="Description: " />
+                <Run Text="{Binding Description}" />
+            </TextBlock>
+        </StackPanel>
+        <Grid Grid.Row="1" Margin="30 50">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button Command="{Binding BackCommand}" Margin="0 0 20 0">Back</Button>
+            <Button Grid.Column="1" Command="{Binding SaveCommand}" Margin="20 0 0 0">Save</Button>
+        </Grid>
+    </Grid>
+</UserControl>

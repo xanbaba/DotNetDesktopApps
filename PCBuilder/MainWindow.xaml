@@ -1,0 +1,19 @@
+﻿<Window x:Class="PCBuilder.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PCBuilder"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <TabControl FontSize="15">
+            <TabItem Header="Motherboards">
+                <local:MotherboardUserControl />
+            </TabItem>
+            <TabItem Header="Hello">
+                <TextBlock>123</TextBlock>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

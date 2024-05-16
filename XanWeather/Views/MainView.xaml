@@ -1,0 +1,33 @@
+﻿<Window x:Class="XanWeather.Views.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:v="clr-namespace:XanWeather.Views"
+        xmlns:vm="clr-namespace:XanWeather.ViewModels"
+        mc:Ignorable="d"
+        Title="MainView" Height="587" Width="445"
+        d:DataContext="{d:DesignInstance d:Type=vm:MainViewModel, IsDesignTimeCreatable=True}">
+    
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type vm:WeatherLocationsViewModel}">
+            <v:WeatherLocationsView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:WeatherInformationViewModel}">
+            <v:WeatherInformationView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AddWeatherLocationViewModel}">
+            <v:AddWeatherLocationView 
+                CityNameGotFocusCommand="{Binding GotCityNameFocusCommand}"
+                CityNameLostFocusCommand="{Binding LostCityNameFocusCommand}"
+                LongitudeGotFocusCommand="{Binding GotLongitudeFocusCommand}"
+                LongitudeLostFocusCommand="{Binding LostLongitudeFocusCommand}"
+                LatitudeGotFocusCommand="{Binding GotLatitudeFocusCommand}"
+                LatitudeLostFocusCommand="{Binding LostLatitudeFocusCommand}"/>
+        </DataTemplate>
+    </Window.Resources>
+    
+    <Grid>
+        <ContentPresenter Content="{Binding CurrentViewModel}" />
+    </Grid>
+</Window>
