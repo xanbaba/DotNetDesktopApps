@@ -1,0 +1,128 @@
+﻿[
+  {
+    "Name": "Asus ROG Strix Z590-E Gaming",
+    "Price": 299,
+    "Manufacturer": "ASUS",
+    "Type": "ATX"
+  },
+  {
+    "Name": "Gigabyte B550 AORUS PRO AC",
+    "Price": 179,
+    "Manufacturer": "Gigabyte",
+    "Type": "ATX"
+  },
+  {
+    "Name": "MSI MAG B460M MORTAR WIFI",
+    "Price": 129,
+    "Manufacturer": "MSI",
+    "Type": "Micro-ATX"
+  },
+  {
+    "Name": "ASRock B450M Steel Legend",
+    "Price": 94,
+    "Manufacturer": "ASRock",
+    "Type": "Micro-ATX"
+  },
+  {
+    "Name": "ASUS TUF Gaming B550-PLUS",
+    "Price": 149,
+    "Manufacturer": "ASUS",
+    "Type": "ATX"
+  },
+  {
+    "Name": "Gigabyte Z590 AORUS ELITE AX",
+    "Price": 269,
+    "Manufacturer": "Gigabyte",
+    "Type": "ATX"
+  },
+  {
+    "Name": "MSI MAG X570 TOMAHAWK WIFI",
+    "Price": 299,
+    "Manufacturer": "MSI",
+    "Type": "ATX"
+  },
+  {
+    "Name": "ASRock X570 Phantom Gaming 4",
+    "Price": 164,
+    "Manufacturer": "ASRock",
+    "Type": "ATX"
+  },
+  {
+    "Name": "ASUS ROG Strix B550-F Gaming",
+    "Price": 189,
+    "Manufacturer": "ASUS",
+    "Type": "ATX"
+  },
+  {
+    "Name": "Gigabyte B450 AORUS ELITE",
+    "Price": 109,
+    "Manufacturer": "Gigabyte",
+    "Type": "ATX"
+  },
+  {
+    "Name": "MSI MPG B550 GAMING PLUS",
+    "Price": 159,
+    "Manufacturer": "MSI",
+    "Type": "ATX"
+  },
+  {
+    "Name": "ASRock B550M Pro4",
+    "Price": 119,
+    "Manufacturer": "ASRock",
+    "Type": "Micro-ATX"
+  },
+  {
+    "Name": "ASUS Prime B550M-A WiFi",
+    "Price": 119,
+    "Manufacturer": "ASUS",
+    "Type": "Micro-ATX"
+  },
+  {
+    "Name": "Gigabyte X570 AORUS ELITE",
+    "Price": 199,
+    "Manufacturer": "Gigabyte",
+    "Type": "ATX"
+  },
+  {
+    "Name": "MSI MAG B550 TOMAHAWK",
+    "Price": 179,
+    "Manufacturer": "MSI",
+    "Type": "ATX"
+  },
+  {
+    "Name": "ASRock B550 Phantom Gaming 4",
+    "Price": 139,
+    "Manufacturer": "ASRock",
+    "Type": "ATX"
+  },
+  {
+    "Name": "ASUS ROG Strix X570-E Gaming",
+    "Price": 329,
+    "Manufacturer": "ASUS",
+    "Type": "ATX"
+  },
+  {
+    "Name": "Gigabyte B550 AORUS MASTER",
+    "Price": 279,
+    "Manufacturer": "Gigabyte",
+    "Type": "ATX"
+  },
+  {
+    "Name": "MSI MAG B550M MORTAR WIFI",
+    "Price": 169,
+    "Manufacturer": "MSI",
+    "Type": "Micro-ATX"
+  },
+  {
+    "Name": "ASRock B450 Pro4",
+    "Price": 99,
+    "Manufacturer": "ASRock",
+    "Type": "ATX"
+  },
+  {
+    "Name": "ASUS Prime X570-P",
+    "Price": 169,
+    "Manufacturer": "ASUS",
+    "Type": "ATX"
+  }
+]

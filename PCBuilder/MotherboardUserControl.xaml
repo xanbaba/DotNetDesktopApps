@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:PCBuilder"
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="600" d:DataContext="{d:DesignInstance Type=local:MotherboardUserControl}">
+             d:DesignHeight="450" d:DesignWidth="600"
+             d:DataContext="{d:DesignInstance Type=local:MotherboardUserControl}">
     <UserControl.Resources>
         <Style x:Key="TextStyle">
             <Setter Property="ContentControl.FontSize" Value="15" />
@@ -29,11 +30,29 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="25" />
                     <RowDefinition />
-                    <RowDefinition Height="32" />
+                    <RowDefinition Height="40" />
                 </Grid.RowDefinitions>
 
                 <TextBlock Margin="0 0 0 5" TextAlignment="Center" Style="{StaticResource TextStyle}">Motherboards</TextBlock>
-                <ListBox Grid.Row="1" Style="{StaticResource BorderedText}"></ListBox>
+                <ListBox Grid.Row="1" Style="{StaticResource BorderedText}" ItemsSource="{Binding Motherboards}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding Name}" Margin="0 0 25 0" />
+                                <TextBlock Grid.Column="1" Text="{Binding Type}" Margin="0 0 25 0" />
+                                <TextBlock Grid.Column="2" Margin="0 0 25 0">
+                                    <Run Text="{Binding Price}" />
+                                    <Run Text="$" />
+                                </TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
                 <Grid Margin="0 5 0 0" Grid.Row="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="2.3*" />
@@ -41,7 +60,7 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBox Style="{StaticResource BorderedText}" Margin="0 0 3 0"></TextBox>
-                    <Button Grid.Column="1" Style="{StaticResource BorderedText}" Background="White">FIND</Button>
+                    <Button Grid.Column="1" Style="{StaticResource BorderedText}" Background="White">Find</Button>
                 </Grid>
             </Grid>
         </Grid>
@@ -56,7 +75,7 @@
                 <RowDefinition Height="80" />
                 <RowDefinition />
                 <RowDefinition />
-                <RowDefinition Height="32" />
+                <RowDefinition Height="40" />
             </Grid.RowDefinitions>
 
             <Border Style="{StaticResource BorderedText}" Padding="5">
@@ -69,34 +88,65 @@
 
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Margin="0 0 5 0">Price Range: till</TextBlock>
-                        <TextBlock>123</TextBlock>
+                        <TextBlock Text="{Binding PriceRangeTill}" />
                         <TextBlock>$</TextBlock>
                     </StackPanel>
-                    <Slider Grid.Row="1"></Slider>
+                    <Slider Grid.Row="1" 
+                            Value="{Binding PriceRangeTill}"
+                            Minimum="{Binding PriceRangeMin}"
+                            Maximum="{Binding PriceRangeMax}" />
                     <StackPanel Grid.Row="2" Orientation="Horizontal">
                         <TextBlock Margin="0 0 5 0">Min:</TextBlock>
-                        <TextBlock>200</TextBlock>
+                        <TextBlock Text="{Binding PriceRangeMin}" />
                         <TextBlock Margin="0 0 5 0">$</TextBlock>
                         <TextBlock Margin="0 0 5 0">Max:</TextBlock>
-                        <TextBlock>500</TextBlock>
+                        <TextBlock Text="{Binding PriceRangeMax}" />
                         <TextBlock Margin="0 0 5 0">$</TextBlock>
                     </StackPanel>
                 </Grid>
             </Border>
 
-            <Border Grid.Row="1" Grid.Column="0" Style="{StaticResource BorderedText}" Margin="0 30 0 0 " Padding="5">
+            <Border Grid.Row="1" Grid.Column="0" Style="{StaticResource BorderedText}" Margin="0 30 0 0 ">
                 <ListBox ItemsSource="{Binding Manufacturers}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel>
-                                <CheckBox IsChecked="{Binding IsChecked}" />
-                                
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox Margin="0 0 20 0" IsChecked="{Binding IsChecked}" />
+                                <TextBlock Text="{Binding Name}" />
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
             </Border>
 
+            <Border Grid.Row="2" Grid.Column="0" Style="{StaticResource BorderedText}" Margin="0 30 0 0 ">
+                <ListBox ItemsSource="{Binding MotherboardTypes}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <RadioButton Margin="0 0 20 0" GroupName="MotherboardTypeGroup" IsChecked="{Binding IsChecked}" />
+                                <TextBlock Text="{Binding Name}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Border>
+
+            <Border Grid.Row="3" Grid.Column="0" Margin="0 5 0 0" Style="{StaticResource BorderedText}">
+                <Grid Style="{StaticResource TextStyle}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Button Background="White">Apply filters</Button>
+                    <Button Grid.Column="1" Background="White">Reset filters</Button>
+                </Grid>
+            </Border>
+
+            <Button Grid.Column="1" Grid.Row="3" Margin="10 5 5 0" Style="{StaticResource BorderedText}"
+                    Background="White">
+                Add
+            </Button>
 
         </Grid>
 
